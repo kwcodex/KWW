@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}404 — KpnWorld{% endblock %}
+
+{% block content %}
+<section class="error-page">
+
+  <div class="error-glow"></div>
+  <div class="error-glow-2"></div>
+
+  <!-- Big 404 background text -->
+  <div class="error-bg-text">404</div>
+
+  <div class="error-inner">
+
+    <p class="section-eyebrow reveal">ERROR 404</p>
+
+    <h1 class="error-title reveal">
+      Page not<br/>
+      <span class="text-gradient">found.</span>
+    </h1>
+
+    <p class="error-sub reveal">
+      Looks like this page doesn't exist in the network.<br/>
+      It may have moved, been deleted, or never existed.
+    </p>
+
+    <!-- Code block flavour -->
+    <div class="code-block error-code reveal">
+      <div class="code-line">
+        <span class="code-num">1</span>
+        <span class="code-comment">// KpnWorld routing error</span>
+      </div>
+      <div class="code-line">
+        <span class="code-num">2</span>
+        <span></span>
+      </div>
+      <div class="code-line">
+        <span class="code-num">3</span>
+        <span class="code-kw">raise </span>
+        <span class="code-fn">NotFound</span>
+        <span>(</span>
+        <span class="code-str">"{{ request.path }}"</span>
+        <span>)</span>
+      </div>
+      <div class="code-line">
+        <span class="code-num">4</span>
+        <span class="code-comment">// status: 404 — route does not exist</span>
+      </div>
+    </div>
+
+    <div class="error-actions reveal">
+      <a href="/" class="btn-primary">← Back home</a>
+      <a href="/#bots" class="btn-ghost">View our bots</a>
+      <a href="https://discord.gg/F9PB47S3FJ" target="_blank" class="btn-ghost">Discord</a>
+    </div>
+
+  </div>
+
+</section>
+{% endblock %}
+
+{% block styles %}
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 60px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .error-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(49,113,240,0.14) 0%, transparent 70%);
+    top: -150px; right: -150px;
+    pointer-events: none;
+    animation: glow-pulse 6s ease-in-out infinite;
+  }
+  .error-glow-2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(220,193,245,0.08) 0%, transparent 70%);
+    bottom: 0; left: -100px;
+    pointer-events: none;
+    animation: glow-pulse 8s ease-in-out infinite reverse;
+  }
+
+  /* Giant background 404 */
+  .error-bg-text {
+    position: absolute;
+    font-size: clamp(180px, 30vw, 380px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(101,136,240,0.07);
+    user-select: none;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 0;
+  }
+
+  .error-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 580px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error-inner .section-eyebrow {
+    justify-content: center;
+    color: var(--lavender);
+  }
+  .error-inner .section-eyebrow::before {
+    background: var(--lavender);
+  }
+
+  .error-title {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+
+  .error-sub {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-bottom: 36px;
+  }
+
+  .error-code {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .error-page { padding: 100px 24px; }
+    .error-actions { flex-direction: column; width: 100%; }
+    .error-actions a { text-align: center; }
+  }
+</style>
+{% endblock %}
